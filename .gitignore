@@ -54,3 +54,4 @@ local.config.R
 *.xlsx
 .secrets
 rsconnect
+junk

@@ -181,6 +181,6 @@ random_select <- function(xx,exclude=c('Other','Surprise me!'),choose=1){
   sample(setdiff(xx,exclude),choose)};
 
 source('local.config.R');
-gs4_auth(token=token);
+try(gs4_auth(token=token));
 
 c()

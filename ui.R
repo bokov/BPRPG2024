@@ -5,7 +5,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # App title
-  titlePanel("Cruise Ship Character Creation"),
+  titlePanel("The Silver Tide"),
   
   # Sidebar layout
   sidebarLayout(
@@ -65,8 +65,59 @@ shinyUI(fluidPage(
     # Main panel with tabs
     mainPanel(
       tabsetPanel(
-        tabPanel("Contact & Itinerary", "Placeholder Contact & Itinerary"),
-        tabPanel("About Us", "Placeholder About Us"),
+        tabPanel("Contact & Itinerary", 
+                 h2("A cruise to end all cruises!"),
+                 p("Andrew Bokov is turning 13 this year and he would like to 
+                 invite you to join him on a Halloween cruise! He would",
+                 tags$i('like'),"to and so would we, but that many cruise tickets 
+                 would get expensive. So... we're having a cruise-themed (and 
+                 Halloween-themed) roleplaying game!"),
+                 p("This is why you're being asked to choose a character on
+                 the side-panel of this website. Feel free to make several
+                 characters, because even though the Silver Tide has the best
+                 safety record in the industry and there is no reason
+                 whatsoever to expect that your character will die in some
+                 spooky and dramatic manner... it is Halloween and... you 
+                 know... it's good to have a backup character or two, just in 
+                 case. But don't worry, all the rumours you've heard about the 
+                 Bermuda Triangle are completely false and everything will be 
+                 fine... just fine."),
+                 p("The cruise departs from:"),
+                 h3("Knight Watch Games"), 
+                 h3("16350 Blanco Rd #116, San Antonio, TX 78232"), 
+                 h3("The Deathstar Room"), 
+                 h3("Saturday, November 2nd, 2024"), 
+                 p("Boarding begins promptly at noon, lasting until 3pm with 
+                   late pick-up available up to 6pm. Parents are welcome to 
+                   stay and play boardgames next to the party room."),
+                 p("Don’t miss this special journey... of a lifetime. 
+                 Your adventure awaits with thrills, chills, delicious snacks, 
+                 and wonderful friends."),
+                 hr(),"Questions? Please contact...",
+                 h4("Rebecca Lively & Alex Bokov"),
+                 h5("Silver Tide Passenger Service Officers"),
+                 h5("Innsmouth Luxury Cruises"),
+                 p("210 639-0712"),
+                 a("Email us with 'Birthday Party 2024' in the subject-line!", href="mailto:ai.supersloths@gmail.com?subject=Birthday%20Party%202024"),
+                 ""
+                 ),
+        tabPanel("About The Silver Tide",
+                 "We are going to be using a modified version of the 
+                 Roll-for-Shoes roleplaying game. You can see the original",
+                 a("here",href='https://rollforshoes.com/'),
+                 ". Here is how our version will go:",
+                 with(tags,ol(
+                   li("The game will be led by a GM (game master) who will be 
+                      describing to you what's going on. To help you visualize
+                      things we'll probably have miniatures, maps, and props."),
+                   li("You will have a PC (player character) which will interact
+                      with other PCs and with NPCs (non-player characters 
+                      controlled by the GM. Your PC will start with a 
+                      general-purpose level-1 skill called 'Do anything' and one or two
+                      specialized higher-level skills."),
+                   li()
+                 )),
+                 ""),
         tabPanel("Jobs", "Placeholder Jobs"),
         tabPanel("FAQ", "Placeholder FAQ"),
         tabPanel("Your CruisePass",
@@ -79,3 +130,4 @@ shinyUI(fluidPage(
     )
   )
 ))
+

@@ -1,11 +1,11 @@
 library(shiny)
 
 shinyServer(function(input, output, session) {
-  
+
   # init ----
   last_submitted_char <- reactiveVal(NULL);
   char_id <- reactive(generate_unique_id());
-  
+
   # update menus for skill1 and motivation ----
   observeEvent(input$archetype,{
     # this part sets the options that vary between archetypes and crew/passenger
@@ -13,14 +13,14 @@ shinyServer(function(input, output, session) {
       select_for_arch(input$archetype
                       ,default_motivation = 'Have fun and try to neither die nor get fired'
                       ,common_skills = input$archetype
-                      ,archdb = list()) %>% 
+                      ,archdb = list()) %>%
         c(skill_label='Automatic crew skill:')
     } else {
       select_for_arch(input$archetype
                       ,default_motivation = 'Have fun and try to not die') %>%
         c(skill_label='Passenger skill:')
     };
-    # this part is generic, regardless of archetype or crew/passenger 
+    # this part is generic, regardless of archetype or crew/passenger
     updateSelectInput(inputId = 'skill1',label=char_options$skill_label
                         ,choices = c(char_options$skills,'Surprise me')
                       , selected=char_options$selected_skill);
@@ -29,13 +29,13 @@ shinyServer(function(input, output, session) {
                       ,choices=c(char_options$motivations,'Surprise me','Other')
                       ,selected = char_options$selected_motivation)
   });
-  
+
   # update menus for archetype and skill2 ----
   observeEvent(input$is_crew,{
     updateTextInput(inputId = 'character_name',value=generate_random_name());
     char_id <- reactive(generate_unique_id());
     updateSelectInput(inputId="debuff", selected=random_select(debuffs));
-    
+
     if (isolate(input$is_crew)) {
       arch_label <- 'Crew Member:';
       arch_choices <- crew_archetypes;
@@ -54,16 +54,16 @@ shinyServer(function(input, output, session) {
     updateSelectInput(inputId = 'skill2',label=skill2_label
                       ,choices = skill2_choices);
   });
-  
-  
+
+
   # Generate a character ID when the app is loaded
   output$character_id <- renderText({
     paste("Character ID:", char_id())
   })
-  
+
   # Handle the submission of character data ----
   observeEvent(input$submit, {
-    last_submitted_char(reactiveValuesToList(input) %>% data.frame %>% 
+    last_submitted_char(reactiveValuesToList(input) %>% data.frame %>%
       transmute(timestamp=Sys.time(),charid=char_id(),character_name,is_crew
                 ,archetype=if(archetype=='Other') custom_archetype else archetype
                 ,char_class=if(is_crew) toupper(archetype) else "PASSENGER"
@@ -80,16 +80,20 @@ shinyServer(function(input, output, session) {
     # Notify the user that their character was submitted
     output$submit_status <- renderText("Character submitted successfully!")
   })
-  
+
   # cruisepass ----
   output$cruise_pass <- renderUI({
     char_cruisepass <- last_submitted_char();
-    if(is.null(char_cruisepass)){div("Please click 'Update my CruisePass Card'")
+    if(is.null(char_cruisepass)){
+      div(
+        style = "border: 2px solid #000; border-radius: 10px; width: 300px; height: 180px; padding: 15px; position: relative; background-color: #f8f8f8;",
+        "Please fill out your character info on the left sidebar (or above if you're using a phone) and then click
+          'Create my CruisePass Card'")
     } else with(char_cruisepass,
-                div(
+                p(div(
                   style = "border: 2px solid #000; border-radius: 10px; width: 300px; height: 180px; padding: 15px; position: relative; background-color: #f8f8f8;",
                   # Logo in the upper right
-                  tags$img(src = 'cruiselogo.png', style = 'position: absolute; top: 10px; right: 10px; width: 60px; height: 60px;'),
+                  tags$img(src = 'cruiselogo_cropped.svg', style = 'position: absolute; top: 10px; right: 10px; width: 60px; height: 60px;'),
                   # Character Name at the top
                   h3(character_name, style = "margin-top: 0;"),
                   # Crew or Passenger designation
@@ -98,12 +102,15 @@ shinyServer(function(input, output, session) {
                   h5(paste0("Cabin: ",cabin), style = "margin-bottom: 5px;"),
                   # Muster Station based on the cabin's deck
                   h5(paste0("Muster Station: ", muster_station), style = "margin-bottom: 5px;")
-                )
+                ),"Please save or print out this CruisePass card. Or at least
+                   write down your character's name and cabin number. Your
+                   CruisPass card reflects the information you entered the most
+                   recent time you pressed 'Create my CruisePass Card'")
     )
   })
-  
-  
+
+
   # debug ----
-  #observeEvent(input$debug, browser());
-    
+  observeEvent(input$debug, browser());
+
 })

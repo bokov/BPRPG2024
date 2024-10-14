@@ -12,15 +12,16 @@ shinyUI(fluidPage(
 
     # Sidebar with the character creation inputs
     sidebarPanel(
-      #actionButton('debug','debug'),
+      if(file.exists('debug')) actionButton('debug','debug'),
 
-      # Checkbox for crew or passenger
+      # Checkbox for crew or passenger ----
       checkboxInput("is_crew", "Do you want to be a member of the crew?", value = FALSE),
       p('Crew have some advantages at interacting with crew-member NPCs
         and the ship itself. Crew get two starting skills auto-assigned to them.
         Passengers only get one starting skill but it can be anything they
         choose.'),
       hr(),
+      # archetypes ----
       p("What kind of character do you want? If you can't decide, choose
         'Surprise me' and the GM will pick something for you. On the other hand
         if you have a very specific idea in mind pick 'Other' so you can
@@ -34,6 +35,7 @@ shinyUI(fluidPage(
         condition = "input.archetype == 'Other'",
         textInput("custom_archetype", "Custom character:",placeholder = "If left blank it's the same as choosing 'Surprise me'")
       ),
+      # skills & motives ----
       selectInput('skill1','Please wait for the page to finish loading',choices= c()),
       selectInput('skill2','Please wait for the page to finish loading',choices=c()),
       selectInput('charactermotive',"Please wait for the page to finish loading",c()),
@@ -42,10 +44,10 @@ shinyUI(fluidPage(
         textInput("custom_movtivation", "Custom motivation:",placeholder = "If left blank it's the same as choosing 'Surprise me'")
       ),
 
-      # Dropdown for debuffs/weaknesses
+      # Dropdown for debuffs/weaknesses ----
       selectInput("debuff", "Choose a debuff/weakness:", choices = debuffs,random_select(debuffs)),
 
-      # Pre-filled textbox for name (modifiable)
+      # Pre-filled textbox for name (modifiable) ----
       textInput("character_name", "Your character's name:", value = generate_random_name()),
 
       textAreaInput('character_bio',"Anything else you want to say about your character?",
@@ -54,18 +56,19 @@ shinyUI(fluidPage(
       # Display generated character ID (read-only)
       textOutput("character_id"),
 
-      # Submit button
+      # Submit button ----
       hr(),
       p('When you are happy with your settings, click this button. Each time
         you do so you will generate a new character.'),
-      actionButton("submit", "Update my CruisePass Card")
+      actionButton("submit", "Create my CruisePass Card")
     ),
 
-    # Main panel for displaying information
     # Main panel with tabs
     mainPanel(
       tabsetPanel(
+        # contact & itinerary ----
         tabPanel("Contact & Itinerary",
+                 uiOutput("cruise_pass"),
                  h2("A cruise to end all cruises!"),
                  p("Andrew Bokov is turning 13 this year and he would like to
                  invite you to join him on a Halloween cruise! He would",
@@ -101,6 +104,7 @@ shinyUI(fluidPage(
                  a("Email us with 'Birthday Party 2024' in the subject-line!", href="mailto:ai.supersloths@gmail.com?subject=Birthday%20Party%202024"),
                  ""
                  ),
+        # game rules ----
         tabPanel("About The Silver Tide",
                  "We are going to be using a modified version of the
                  Roll-for-Shoes roleplaying game. You can see the original",
@@ -145,9 +149,9 @@ shinyUI(fluidPage(
                    li("More good news-- you even learn from failure. If you
                       roll your dice and fail to beat the target number or the
                       GM's dice-roll, you get an experience point as a
-                      consolation prize. Each experience point lets you
-                      convert one dice roll into a 6",tags$i("after"),"the
-                      outcome happened. In other words, let's say you roll a 6
+                      consolation prize. You can spend an experience point to
+                      convert one die roll into a 6",tags$i("after"),"the
+                      outcome happens. In other words, let's say you roll a 6
                       and a 2 when trying to repair a control panel using your
                       'repair: 2' skill but that's not enough to repair it.
                       You get an experience point. You can save it for later
@@ -166,27 +170,28 @@ shinyUI(fluidPage(
                       subtracted. Some weaknesses might behave differently and
                       if you have one of those, the GM will explain to you
                       what's different."),
-                   li(p("You know how in most computer games and RPGs you're on a
-                      hitpoint system? And healing works remarkably quickly
-                      and thoroughly? Like, you use up a med-kit or a healing
-                      potion and suddenly that severed limb or pneumothorax is
-                      all better within seconds and you can jump right back
-                      into battle? Yeah, nah, we're going to be more realistic
-                      here. There are three levels of hurt-- mild, moderate,
-                      and severe. Mild injuries can be cured completely by a
-                      successful use of a medical-type skill. If you're mildly
-                      injured and get injured again, (of if you're uninjured
-                      but take enough damage) you are moderately injured.
-                      Think, broken bone, concussion, laceration, torn
-                      ligaments. You cannot be completely cured during this
-                      game-- the best a doctor or paramedic can do for you is
-                      get you back to mildly injured, though no further.
-                      Likewise, you can go from moderate to severe injuries
-                      (or jump straight to severe injuries when taking massive
-                      damage). From severe injuries you can only be healed
-                      back down to moderate injuries, but no further. The next
-                      injury level past severe is dead. You do have a backup
-                      character or two, don't you?"),
+                   li(p("You know how in most computer games and RPGs healing
+                      works remarkably quickly and thoroughly? Like, you use
+                      up a med-kit or a healing potion and suddenly that
+                      severed limb or pneumothorax is all better within
+                      seconds and you can jump right back into battle? Or you
+                      can run around fighting with only one hitpoint left?
+                      Yeah, nah, we're going to be more realistic here. There
+                      are three levels of hurt-- mild, moderate, and severe.
+                      Mild injuries can be cured completely by a successful
+                      use of a medical-type skill. If you're mildly injured
+                      and get injured again, (of if you're uninjured but take
+                      enough damage) you are moderately injured. Think, broken
+                      bone, concussion, laceration, torn ligaments. You cannot
+                      be completely cured during this game-- the best a doctor
+                      or paramedic can do for you is get you back to mildly
+                      injured, though no further. Likewise, you can go from
+                      moderate to severe injuries (or jump straight to severe
+                      injuries when taking massive damage). From severe
+                      injuries you can only be healed back down to moderate
+                      injuries, but no further. The next injury level past
+                      severe is dead. You do have a backup character or two,
+                      don't you?"),
                       p("Like in real life, injuries are very inconvenient.
                       For each level of injury you are given one injury die
                       Unless otherwise told by the GM, you throw your injury
@@ -205,16 +210,74 @@ shinyUI(fluidPage(
                       character.")
                  )),
                  ""),
-        tabPanel("Jobs", "Placeholder Jobs"),
-        tabPanel("FAQ", "Placeholder FAQ"),
-        tabPanel("Your CruisePass",
-                 p('Please save or print out your CruisePass card. Or at least
-                   remember your cabin number. Your CruisPass card reflects the
-                   information you entered before the latest time you pressed
-                   "Update my CruisePass Card"'),
-                 uiOutput("cruise_pass"))
-      )
+        # info for crew ----
+        #tabPanel("Jobs", "Placeholder Jobs"),
+        # FAQ ----
+        tabPanel("FAQ",with(tags,
+                            dl(
+                              dt("What does skill <X> do?"),
+                              dd("All the skills give you two dice to roll for
+                                 doing some specific type of task, as opposed to
+                                 the one die you roll for doing anything at all.
+                                 If time permits we will update this website
+                                 with descriptions of every skill, so",
+                                 b("check back here before the birthday party for
+                                   descriptions and other updates")),
+                              dt("Why can't crew members choose their skills?"),
+                              dd("To keep them from being OP. Crew members
+                                 get two skills instead of one. The first, 'Knowledge of the
+                                 ship and access to crew-only areas' gives them
+                                 two dice to roll for things like knowing where
+                                 various things are located on the ship,
+                                 unlocking doors, and getting NPCs to do what
+                                 they want them to. The other skill is their
+                                 specialty as a crew member. So if you pick
+                                 'Lifeguard', your skill is also 'Lifeguard'.
+                                 This means you get to roll two dice when trying
+                                 to do something you'd expect a lifeguard to be
+                                 able to do-- not only swimming but also
+                                 first-aid, and even charisma (from looking cute in
+                                 that bright-red lifeguard swimsuit). So by
+                                 choosing to be a crew-member you're trading off
+                                 customizability for special pre-determined
+                                 abilities."),
+                              dt("How will I get my character when I go to the party?"),
+                              dd("The GM will call out characters by name and
+                                 cabin-number. If it matches one of the
+                                 CruisPasses you printed or saved, you raise
+                                 your hand and get that character's packet"),
+                              dt("So, when I press 'Create my CruisePass' that
+                                 registers a new character?"),
+                              dd("Yes"),
+                              dt("How do I make multiple characters?"),
+                              dd("Press 'Create my CruisePass' multiple times
+                                 (and each time print or save the CruisePass
+                                 so you can claim that character)"),
+                              dt("What if I make a character by mistake?"),
+                              dd("Just tell the GM when he calls that character."),
+                              dt("What if I only make one character or I make a
+                                 few but I still run out of characters because
+                                 things get more Halloweeny than I expected?"),
+                              dd("No problem. We'll help you roll up a new one
+                                 on-site."),
+                              dt("So I can make 20 characters and be immortal?"),
+                              dd("There's no hard limit on characters but you
+                                  only play one at a time until/unless something
+                                  happens to them. Just make 2-3. If you run
+                                 out of characters, you can get a new one
+                                 rolled up on the spot. That makes it easier for
+                                 everyone."),
+                              dt("What if I think I found a bug or typo?"),
+                              dd("Please post it here:",a("https://bokov.shinyapps.io/BPRPG2024/",href="https://github.com/bokov/BPRPG2024/issues"))
+
+                            )))
+      #   tabPanel("Your CruisePass",
+      #            p('Please save or print out your CruisePass card. Or at least
+      #              remember your cabin number. Your CruisPass card reflects the
+      #              information you entered before the latest time you pressed
+      #              "Create my CruisePass Card"'),
+      # )
     )
   )
-))
+)))
 

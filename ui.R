@@ -166,32 +166,43 @@ shinyUI(fluidPage(
                       subtracted. Some weaknesses might behave differently and
                       if you have one of those, the GM will explain to you
                       what's different."),
-                   li("You know how in most computer games and RPGs you're on a
-                      hitpoint system? And healing works remarkably quickly and
-                      thoroughly? Like, you use up a med-kit or a healing potion
-                      and suddenly that severed limb or pneumothorax is all
-                      better within seconds and you can jump right back into battle? Yeah, nah,
-                      we're going to be more realistic here. There are three levels
-                      of hurt-- mild, moderate, and severe. Mild injuries can be
-                      cured completely by a successful use of a medical-type skill.
-                      If you're mildly injured and get injured again, (of if you're uninjured but take enough damage) you are moderately injured.
-                      Think, broken bone, concussion, laceration, torn ligaments.
-                      You cannot be completely cured during this game-- the best
-                      a doctor or paramedic can do for you is get you back to
-                      mildly injured, though no further. Likewise, you can go from moderate to severe
-                      injuries (or jump straight to severe injuries when taking massive damage).
-                      From severe injuries you can only be healed back down to
-                      moderate injuries, but no further. The next injury level past
-                      severe is dead. You do have a backup character or two, don't you?
-                      Like in real life, injuries are very inconvenient. Instead
-                      of subtracting a number from your roll, each level of
-                      injury subtracts",tags$i('one die'),"from any roll. If the
-                      result is zero, you throw one die. If the result is -1,
-                      you throw",tags$i('two'),"dice but instead of adding them,'
-                      you use the one that rolled the lowest and disregard the
-                      rest. If the dice for the skill you are using with your
-                      injury level subtracted from them are -2, then you throw
-                      three dice and keep the lowest of those rolls, and so on.")
+                   li(p("You know how in most computer games and RPGs you're on a
+                      hitpoint system? And healing works remarkably quickly
+                      and thoroughly? Like, you use up a med-kit or a healing
+                      potion and suddenly that severed limb or pneumothorax is
+                      all better within seconds and you can jump right back
+                      into battle? Yeah, nah, we're going to be more realistic
+                      here. There are three levels of hurt-- mild, moderate,
+                      and severe. Mild injuries can be cured completely by a
+                      successful use of a medical-type skill. If you're mildly
+                      injured and get injured again, (of if you're uninjured
+                      but take enough damage) you are moderately injured.
+                      Think, broken bone, concussion, laceration, torn
+                      ligaments. You cannot be completely cured during this
+                      game-- the best a doctor or paramedic can do for you is
+                      get you back to mildly injured, though no further.
+                      Likewise, you can go from moderate to severe injuries
+                      (or jump straight to severe injuries when taking massive
+                      damage). From severe injuries you can only be healed
+                      back down to moderate injuries, but no further. The next
+                      injury level past severe is dead. You do have a backup
+                      character or two, don't you?"),
+                      p("Like in real life, injuries are very inconvenient.
+                      For each level of injury you are given one injury die
+                      Unless otherwise told by the GM, you throw your injury
+                      dice at the same time as you roll your normal dice. You
+                      add the injury dice together and subtract them from your
+                      skill dice.")),
+                   li("The same happens with mental trauma. Certain disturbing
+                      experiences take a toll on your characters's sanity, and
+                      you get trauma dice each time it happens. If you fail your
+                      dice roll because of mental trauma, your character does
+                      something you didn't intend-- maybe they run away
+                      screaming, maybe they freeze up, maybe they procrastinate
+                      on doing something urgent. If you rack up more than three
+                      mental dice, you don't die, but your character 'snaps' and
+                      becomes an NPC and you will need to switch to a backup
+                      character.")
                  )),
                  ""),
         tabPanel("Jobs", "Placeholder Jobs"),

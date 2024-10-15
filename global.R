@@ -5,17 +5,19 @@ library(charlatan);      # for name generation
 # lookup tables ----
 
 # . crew_archetypes ----
-crew_archetypes <- c("Engineer", "Deckhand", "Security Officer", "Cook"
-                     , "Bartender", "Waiter", "Steward", "Ship Entertainer: Dance"
-                     , "Ship Entertainer: Musical Theater"
-                     , "Ship Entertainer: Comedian"
-                     , "Ship Entertainer: Musician", "Sales Clerk" , "Janitor"
+crew_archetypes <- c("Engineer", "Deckhand", "Security", "Cook"
+                     , "Bartender", "Waiter", "Steward", "Entertainment: Dance"
+                     , "Entertainment: Musical Theater"
+                     , "Entertainment: Comedian"
+                     , "Entertainment: Musician"
+                     , "Entertainment: Stage Tech"
+                     , "Sales Clerk" , "Janitor"
                      , "Yoga Instructor", "Spa/Salon Staff"
-                     ,"Sports & Adventure Coach", "Lifeguard"
+                     , "Sports & Adventure Coach", "Lifeguard"
                      , "Kids Club Counsellor", "Ship Doctor", "Chaplain", "Bridge Crew"
-                     , "Stage Magician", "Casino Card Dealer", "Maintenance"
+                     , "Entertainment: Magician", "Casino Card Dealer", "Maintenance"
                      , "Computer Admin", "Entertainment Director"
-                     , "Recreation Specialist", "Other","Surprise me");
+                     , "Other","Surprise me");
 
 # . passenger_archetypes ----
 passenger_archetypes <- c("Eccentric Billionaire", "Conspiracy Theorist"
@@ -120,7 +122,7 @@ archetypes_plus <- list(
   `Retired Detective` = list(
     skills = c("Critical thinking", "Lockpicking", "Firearms", "Hacking", "Skepticism","Situational awareness","Sense motive","Disguises"),
     motivations = c("Find hidden treasure",
-                                        "Discover a family secret",
+                    "Discover a family secret",
                                         "Investigate strange occurrences",
                                         "Uncover a cult conspiracy",
                                         "Solve a mysterious disappearance",

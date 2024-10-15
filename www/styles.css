@@ -1,15 +1,33 @@
-.well,.active>a, .selectize-input {
+.well,.active>a, .selectize-input, .tab-pane {
     background-color: rgb(255, 253, 248) !important;
+    text-align: justify;
 }
 
 .tab-pane {
-    background-color: rgb(255, 253, 248);
     padding: 2%;
 }
 
 h2>div {
- font-family: 'Playfair Display', serif;
- font-weight: 400;
- font-style: italic;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
  /* color: #2E4053;*/  /* Optional: Add a custom color */
+  background: url('cruiselogo_masthead.png');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  padding-left: 7vw;
+  padding-bottom: 6vh;
+  display: flex;
+  align-items: center;
+}
+
+.container-fluid {
+    background: linear-gradient(to bottom right, lightblue 1%, white 99%);
+    height: 200vh;
+    width: 100vw;
 }

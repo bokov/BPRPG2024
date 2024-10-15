@@ -11,35 +11,10 @@ shinyUI(fluidPage(
     tags$link(rel="manifest",href="/site.webmanifest"),
     tags$link(rel = "stylesheet", href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap")
   ),
-  style = "
-    background: linear-gradient(to bottom right, lightblue 1%, white 99%);
-    height: 100vh;
-    width: 100vw;
-  ",
   # App title
   titlePanel(div(
-    style = "
-    background: url('cruiselogo_masthead.png');
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 100px;
-    width: 100%;
-    position: relative;
-    text-align: left;
-    padding-left: 7vw;
-    padding-bottom: 5vh;
-    display: flex;
-    align-items: center;
-  ",
   "The Silver Tide"))
   ,
-  # tags$div(
-  # tags$img(
-  #   src = 'cruiselogo_masthead.png',
-  #   style = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: auto; height: 100%;'
-  # )
-  # ),
 
   # Sidebar layout
   sidebarLayout(

@@ -1,0 +1,15 @@
+.well,.active>a, .selectize-input {
+    background-color: rgb(255, 253, 248) !important;
+}
+
+.tab-pane {
+    background-color: rgb(255, 253, 248);
+    padding: 2%;
+}
+
+h2>div {
+ font-family: 'Playfair Display', serif;
+ font-weight: 400;
+ font-style: italic;
+ /* color: #2E4053;*/  /* Optional: Add a custom color */
+}

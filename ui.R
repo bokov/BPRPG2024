@@ -4,6 +4,7 @@ library(shiny)
 
 shinyUI(fluidPage(
   tags$head(
+    tags$title("The Silver Tide - Innsmouth Luxury Cruises"),
     tags$link(rel = "stylesheet", type = "text/css", href = "styles.css"),
     tags$link(rel = "apple-touch-icon", sizes="180x180", href="/apple-touch-icon.png"),
     tags$link(rel="icon",type="image/png",sizes="32x32",href="/favicon-32x32.png"),

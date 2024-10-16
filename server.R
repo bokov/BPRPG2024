@@ -55,6 +55,14 @@ shinyServer(function(input, output, session) {
                       ,choices = skill2_choices);
   });
 
+  observeEvent(input$debuff,{
+    output$debuff_info <- renderUI(p(class='selectedinfo',debuffs[input$debuff]));
+  })
+
+  observeEvent(input$skill1,{
+    output$skill1_info <- renderUI(p(class='selectedinfo',if(!input$is_crew) passenger_skills_with_descriptions[input$skill1] else ''));
+  })
+
 
   # Generate a character ID when the app is loaded
   output$character_id <- renderText({

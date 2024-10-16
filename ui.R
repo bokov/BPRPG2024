@@ -47,7 +47,9 @@ shinyUI(fluidPage(
       ),
       # skills & motives ----
       selectInput('skill1','Please wait for the page to finish loading',choices= c()),
+      uiOutput('skill1_info'),
       selectInput('skill2','Please wait for the page to finish loading',choices=c()),
+      uiOutput('skill2_info'),
       selectInput('charactermotive',"Please wait for the page to finish loading",c()),
       conditionalPanel(
         condition = "input.charactermotive == 'Other'",
@@ -55,7 +57,8 @@ shinyUI(fluidPage(
       ),
 
       # Dropdown for debuffs/weaknesses ----
-      selectInput("debuff", "Choose a debuff/weakness:", choices = debuffs,random_select(debuffs)),
+      selectInput("debuff", "Choose a debuff/weakness:", choices = names(debuffs),random_select(names(debuffs))),
+      uiOutput('debuff_info'),
 
       # Pre-filled textbox for name (modifiable) ----
       textInput("character_name", "Your character's name:", value = generate_random_name()),

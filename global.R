@@ -36,6 +36,15 @@ passenger_archetypes <- c("Eccentric Billionaire", "Conspiracy Theorist"
                           , "Gambler", "Con-Artist"
                           , "Other","Surprise me");
 
+# Travel Journalist: c('Wilderness survival', 'Scuba diving', 'Entertaining', 'Maritime lore', 'Navigation','Fishing','Charisma')
+# Nature-Lover: c('Wilderness survival','Navigation','Endurance','Archery','Fishing','Scuba diving','Swimming','Climbing','Agility','Toughness','Animal handling')
+# Recent Armed Forces Veteran: c('Basic first aid','Navigation','Wilderness survival','Firearms','Stealth','Endurance','Martial arts','Climbing','Agility','Leadership','Strength','Toughness','Situational awareness','Explosives','Willpower','Maritime lore')
+# Off-duty cop: c('Basic first aid','Firearms','Martial arts','Leadership','Strength','Toughness','Situational awareness','Sense motive')
+# Environmentalist: c('Hacking','Charisma','Leadership','Skepticism','Faith','Science lore','Critical thinking')
+# Firefighter: c('Basic first aid','Leadership','Strength','Toughness','Situational awareness','Endurance','Climbing')
+# Doctor: c('Basic first aid','Critical thinking','Science lore')
+# Extreme Sports Enthusiast
+
 # . passenger_skills ----
 passenger_skills <- c(
   "Basic first aid", "Navigation", "Wilderness survival",
@@ -47,6 +56,50 @@ passenger_skills <- c(
   "Animal handling", "Explosives", "Disguises",
   "Willpower", "Scavenging", "Occult lore", "Maritime lore", "Science lore",
   "Magical cantrips", "Meditation")
+
+passenger_skills_with_descriptions <- c(
+  `Basic first aid` = "Use for treating wounds, injuries, or stabilizing someone.",
+  `Navigation` = "Use for determining direction, plotting courses, or reading maps.",
+  `Wilderness survival` = "Use for foraging, finding shelter, or surviving in nature.",
+  `Lockpicking` = "Use for bypassing locked doors or containers.",
+  `Firearms` = "Use for shooting guns with precision and control.",
+  `Bladed weapons` = "Use for attacking with knives, swords, or other sharp tools.",
+  `Archery` = "Use for shooting arrows or projectiles with a bow.",
+  `Stealth` = "Use for sneaking, hiding, or avoiding detection.",
+  `Endurance` = "Use for resisting fatigue, pain, or physical exhaustion.",
+  `Electronic devices` = "Use for operating or repairing computers and gadgets.",
+  `Mechanical devices` = "Use for fixing or understanding mechanical systems.",
+  `Fishing` = "Use for catching fish with rods, nets, or improvised tools.",
+  `Improvised weapons` = "Use for fighting with random objects at hand.",
+  `Martial arts` = "Use for engaging in hand-to-hand combat or self-defense.",
+  `Scuba diving` = "Use for swimming or navigating underwater with equipment.",
+  `Swimming` = "Use for swimming or staying afloat without equipment.",
+  `Climbing` = "Use for scaling walls, trees, or steep surfaces.",
+  `Entertaining` = "Use for performing, singing, or keeping others entertained.",
+  `Agility` = "Use for balancing, dodging, or moving gracefully.",
+  `Hacking` = "Use for breaching security systems or accessing restricted data.",
+  `Charisma` = "Use for persuading, influencing, or charming others.",
+  `Leadership` = "Use for influencing groups of people or coordinating group efforts.",
+  `Critical thinking` = "Use for solving problems or making logical deductions.",
+  `Strength` = "Use for lifting, carrying, or breaking objects with force.",
+  `Toughness` = "Use for resisting physical harm or enduring hardship.",
+  `Skepticism` = "Use for seeing through lies, deceptions, insanity, or superstitions.",
+  `Faith` = "Use for drawing strength from beliefs or inspiring others spiritually, providing protection against insanity.",
+  `Situational awareness` = "Use for noticing hidden dangers or opportunities.",
+  `Sign language` = "Use for communicating silently or across noisy spaces.",
+  `Sense motive` = "Use for discerning others' intentions or emotions.",
+  `Animal handling` = "Use for calming, training, or guiding animals.",
+  `Explosives` = "Use for handling or setting up explosive devices.",
+  `Disguises` = "Use for altering appearance to avoid recognition.",
+  `Willpower` = "Use for resisting temptation, mental manipulation, or insanity.",
+  `Scavenging` = "Use for finding useful items in unlikely places.",
+  `Occult lore` = "Use for identifying magical rituals or supernatural knowledge.",
+  `Maritime lore` = "Use for recalling sea-related knowledge and traditions.",
+  `Science lore` = "Use for applying scientific knowledge to situations.",
+  `Magical cantrips` = "Use for casting minor spells or illusions and resisting t.",
+  `Meditation` = "Use on self or others for calming the mind or focusing inner energy, providing protection and partial reversal of insanity."
+)
+
 
 # . motivations ----
 motivations <- c(
@@ -123,17 +176,65 @@ archetypes_plus <- list(
     skills = c("Critical thinking", "Lockpicking", "Firearms", "Hacking", "Skepticism","Situational awareness","Sense motive","Disguises"),
     motivations = c("Find hidden treasure",
                     "Discover a family secret",
-                                        "Investigate strange occurrences",
-                                        "Uncover a cult conspiracy",
-                                        "Solve a mysterious disappearance",
-                                        "Uncover a crime",
-                                        "Fulfill a personal prophecy",
-                                        "Expose someone’s dark secret")
+                    "Investigate strange occurrences",
+                    "Uncover a cult conspiracy",
+                    "Solve a mysterious disappearance",
+                    "Uncover a crime",
+                    "Fulfill a personal prophecy",
+                    "Expose someone’s dark secret")
   )
 )
 
 # . debuffs ----
-debuffs <- c("Fear of Water", "Claustrophobic", "Motion Sickness", "Paranoia", "Terrible Luck", "Easily Distracted");
+debuffs <- debuffs <- c(
+  `Seasickness` = "Easily nauseated by the ship’s movement, reducing effectiveness in physical tasks.",
+  `Aquaphobia` = "Fear of water makes it hard to deal with the sea or swim.",
+  `Claustrophobic` = "Becomes anxious in small or enclosed spaces, impacting focus and decision-making.",
+  `Motion Sickness` = "Trouble focusing during movement, especially on unstable surfaces like the ship’s deck.",
+  `Vertigo` = "Difficulty maintaining balance, especially in high places.",
+  `Nightmares` = "Experiences terrifying dreams that disrupt sleep, reducing stamina and mental clarity.",
+  `Paranoia` = "Always suspects others of foul play, causing difficulty trusting allies and following plans.",
+  `Poor Vision` = "Struggles to see clearly without glasses or in dimly lit areas.",
+  `Nervous` = "Easily panicked or flustered, causing slow reactions in high-pressure situations.",
+  `Insomnia` = "Has trouble sleeping, leading to exhaustion and reduced performance.",
+  `Imposter Syndrome` = "Constant self-doubt, hindering confidence in skills or decisions.",
+  `Weak Constitution` = "Prone to illnesses and physical fatigue, making recovery from injuries slower.",
+  `Loudmouth` = "Tends to speak loudly or at the wrong time, attracting unwanted attention.",
+  `Fear of Blood` = "Panics or becomes faint when exposed to blood, reducing effectiveness in medical or combat situations.",
+  `Cowardice` = "Easily frightened and more likely to flee from danger instead of fighting.",
+  `Forgetful` = "Frequently forgets important details or items, causing issues when managing resources or planning.",
+  `Overconfidence` = "Takes unnecessary risks, assuming they’ll always succeed.",
+  `Poor Swimmer` = "Struggles with swimming, making it difficult to survive or escape water-related dangers.",
+  `Gullible` = "Easily tricked or manipulated by others.",
+  `Greedy` = "Obsessed with acquiring wealth or valuables, causing distraction or reckless decisions.",
+  `Pacifist` = "Refuses to engage in combat, severely limiting options in violent encounters.",
+  `Superstitious` = "Easily swayed by irrational beliefs, making it difficult to focus on logic or reason.",
+  `Frail` = "Physically weak and easily injured, lowering effectiveness in physically demanding tasks.",
+  `Slow Reflexes` = "Has trouble reacting quickly in time-sensitive situations.",
+  `Clumsy` = "Often trips, drops things, or makes mistakes, leading to accidents or failures.",
+  `Overanxious` = "Frequently worries about worst-case scenarios, causing indecision or hesitation.",
+  `Disloyal` = "Likely to abandon or betray the group when it seems personally advantageous.",
+  `Addicted` = "Dependent on a substance or activity, causing withdrawal symptoms and impaired focus.",
+  `Fear of Heights` = "Becomes dizzy and frightened when near high ledges or cliffs.",
+  `Easily Distracted` = "Struggles to stay focused on tasks, especially in chaotic or noisy environments.",
+  `Compulsive Gambler` = "Always looking for an opportunity to gamble, even in inappropriate situations.",
+  `Bad Liar` = "Terrible at deception, often getting caught when trying to lie or manipulate.",
+  `Overtly Honest` = "Struggles to keep secrets or tell lies, even when necessary.",
+  `Inflexible` = "Rigid in their thinking, unable to adapt easily to new plans or strategies.",
+  `Vain` = "Preoccupied with appearance and reputation, sometimes prioritizing these over practical concerns.",
+  `Lazy` = "Avoids exerting effort unless absolutely necessary, preferring to let others take charge.",
+  `Impulsive` = "Tends to act without thinking, often getting into trouble or causing unintended consequences.",
+  `Fear of Darkness` = "Becomes anxious and ineffective in dark areas, refusing to go into unlit spaces.",
+  `Nearsighted` = "Has difficulty seeing things clearly at a distance, making long-range perception or aiming difficult.",
+  `Hot-headed` = "Easily angered, leading to rash decisions or unnecessary conflict.",
+  `Obsessive` = "Fixates on a particular goal or idea, to the detriment of everything else.",
+  `Unlucky` = "Seems to attract bad luck, with plans often going wrong for no apparent reason.",
+  `Overburdened` = "Carries too much equipment or personal items, slowing them down or limiting physical ability.",
+  `Stubborn` = "Refuses to change their mind or admit they’re wrong, even when it’s obvious.",
+  `Shaky Hands` = "Has trouble with fine motor skills, making delicate tasks like aiming or lockpicking difficult."
+)
+
+
 
 # functions ----
 
@@ -143,7 +244,7 @@ select_for_arch <- function(archetype
                             ,default_skill=NA
                             ,archdb=archetypes_plus
                             ,common_motivations=motivations
-                            ,common_skills=passenger_skills){
+                            ,common_skills=names(passenger_skills_with_descriptions)){
   # find the entry if any
   arch <- archdb[[archetype]];
 

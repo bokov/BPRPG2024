@@ -34,7 +34,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$is_crew,{
     updateTextInput(inputId = 'character_name',value=generate_random_name());
     char_id <- reactive(generate_unique_id());
-    updateSelectInput(inputId="debuff", selected=random_select(debuffs));
+    #updateSelectInput(inputId="debuff", selected=random_select(debuffs));
 
     if (isolate(input$is_crew)) {
       arch_label <- 'Crew Member:';

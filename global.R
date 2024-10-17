@@ -36,14 +36,6 @@ passenger_archetypes <- c("Eccentric Billionaire", "Conspiracy Theorist"
                           , "Gambler", "Con-Artist"
                           , "Other","Surprise me");
 
-# Travel Journalist: c('Wilderness survival', 'Scuba diving', 'Entertaining', 'Maritime lore', 'Navigation','Fishing','Charisma')
-# Nature-Lover: c('Wilderness survival','Navigation','Endurance','Archery','Fishing','Scuba diving','Swimming','Climbing','Agility','Toughness','Animal handling')
-# Recent Armed Forces Veteran: c('Basic first aid','Navigation','Wilderness survival','Firearms','Stealth','Endurance','Martial arts','Climbing','Agility','Leadership','Strength','Toughness','Situational awareness','Explosives','Willpower','Maritime lore')
-# Off-duty cop: c('Basic first aid','Firearms','Martial arts','Leadership','Strength','Toughness','Situational awareness','Sense motive')
-# Environmentalist: c('Hacking','Charisma','Leadership','Skepticism','Faith','Science lore','Critical thinking')
-# Firefighter: c('Basic first aid','Leadership','Strength','Toughness','Situational awareness','Endurance','Climbing')
-# Doctor: c('Basic first aid','Critical thinking','Science lore')
-# Extreme Sports Enthusiast
 
 # . passenger_skills ----
 passenger_skills <- c(
@@ -183,6 +175,27 @@ archetypes_plus <- list(
                     "Fulfill a personal prophecy",
                     "Expose someone’s dark secret")
   )
+  ,`Gambler`=list(skills=c("Critical thinking","Skepticism","Situational awareness","Sense motive"),motivations=c())
+  ,`Con-Artist`=list(skills=c("Lockpicking","Hacking","Skepticism","Situational awareness","Sense motive","Charisma","Disguises"),motivations=c())
+  ,`Private Investigator`=list(skills=c("Critical thinking","Lockpicking","Firearms","Hacking","Skepticism","Situational awareness","Sense motive","Disguises"),motivations=c())
+  ,`Smuggler`=list(skills=c("Firearms","Situational awareness","Sense motive","Disguises","Maritime lore","Navigation"),motivations=c())
+  ,`Travel Journalist`=list(skills=c('Wilderness survival', 'Scuba diving', 'Entertaining', 'Maritime lore', 'Navigation','Fishing','Charisma'),motivations=c())
+  ,`Nature-Lover`=list(skills=c('Wilderness survival','Navigation','Endurance','Archery','Fishing','Scuba diving','Swimming','Climbing','Agility','Toughness','Animal handling'),motivations=c())
+  ,`Recent Armed Forces Veteran`=list(skills=c('Basic first aid','Navigation','Wilderness survival','Firearms','Stealth','Endurance','Martial arts','Climbing','Agility','Leadership','Strength','Toughness','Situational awareness','Explosives','Willpower','Maritime lore'),motivations=c())
+  ,`Off-duty cop`=list(skills=c('Basic first aid','Firearms','Martial arts','Leadership','Strength','Toughness','Situational awareness','Sense motive'),motivations=c())
+  ,`Environmentalist`=list(skills=c('Hacking','Charisma','Leadership','Skepticism','Faith','Science lore','Critical thinking'),motivations=c())
+  ,`Firefighter`=list(skills=c('Basic first aid','Leadership','Strength','Toughness','Situational awareness','Endurance','Climbing'),motivations=c())
+  ,`Doctor`=list(skills=c('Basic first aid','Critical thinking','Science lore'),motivations=c())
+  ,`Extreme Sports Enthusiast`=list(skills=c('Endurance','Agility','Climbing','Swimming'),motivations=c())
+  ,`Actor`=list(skills=c('Entertaining','Charisma','Disguises'),motivations=c())
+  ,`Tech Bro`=list(skills=c('Hacking','Electronic devices','Charisma','Leadership','Critical thinking','Sense motive'),motivations=c())
+  ,`Gamer`=list(skills=c('Electronic devices','Hacking','Critical thinking'),motivations=c())
+  ,`Rebellious Teenager`=list(skills=c('Lockpicking','Improvised weapons','Hacking','Skepticism','Sense motive'),motivations=c())
+  ,`Popular Teenager`=list(skills=c('Charisma','Leadership','Sense motive'),motivations=c())
+  ,`Athlete`=list(skills=c('Endurance','Agility','Toughness','Strength'),motivations=c())
+  ,`MMA Fighter`=list(skills=c('Martial arts'),motivations=c())
+  ,`Professor`=list(skills=c('Critical thinking','Skepticism','Occult lore','Science lore'),motivations=c())
+  ,`DIY Inventor`=list(skills=c('Critical thinking','Skepticism','Science lore','Explosives','Electronic devices','Mechanical devices','Hacking','Scavenging'),motivations=c())
 )
 
 # . debuffs ----
@@ -206,16 +219,15 @@ debuffs <- debuffs <- c(
   `Overconfidence` = "Takes unnecessary risks, assuming they’ll always succeed.",
   `Poor Swimmer` = "Struggles with swimming, making it difficult to survive or escape water-related dangers.",
   `Gullible` = "Easily tricked or manipulated by others.",
-  `Greedy` = "Obsessed with acquiring wealth or valuables, causing distraction or reckless decisions.",
-  `Pacifist` = "Refuses to engage in combat, severely limiting options in violent encounters.",
-  `Superstitious` = "Easily swayed by irrational beliefs, making it difficult to focus on logic or reason.",
+  `Greedy` = "Has to roll to resist temptation to acquire wealth or valuables, causing distraction or reckless decisions.",
+  `Pacifist` = "Refuses to engage in combat (automatic fail of any aggressive action), severely limiting options in violent encounters.",
+  `Superstitious` = "Easily swayed by irrational beliefs, making it difficult to focus on logic or reason, vulnerable to indoctrination.",
   `Frail` = "Physically weak and easily injured, lowering effectiveness in physically demanding tasks.",
   `Slow Reflexes` = "Has trouble reacting quickly in time-sensitive situations.",
   `Clumsy` = "Often trips, drops things, or makes mistakes, leading to accidents or failures.",
   `Overanxious` = "Frequently worries about worst-case scenarios, causing indecision or hesitation.",
-  `Disloyal` = "Likely to abandon or betray the group when it seems personally advantageous.",
-  `Addicted` = "Dependent on a substance or activity, causing withdrawal symptoms and impaired focus.",
-  `Fear of Heights` = "Becomes dizzy and frightened when near high ledges or cliffs.",
+  `Compulsive gambler` = "Must roll to resist any temptation to gamble. Ironic, right?",
+  `Fear of Heights` = "Becomes dizzy and frightened when near balconies or the edges of open-air decks",
   `Easily Distracted` = "Struggles to stay focused on tasks, especially in chaotic or noisy environments.",
   `Compulsive Gambler` = "Always looking for an opportunity to gamble, even in inappropriate situations.",
   `Bad Liar` = "Terrible at deception, often getting caught when trying to lie or manipulate.",
@@ -229,7 +241,7 @@ debuffs <- debuffs <- c(
   `Hot-headed` = "Easily angered, leading to rash decisions or unnecessary conflict.",
   `Obsessive` = "Fixates on a particular goal or idea, to the detriment of everything else.",
   `Unlucky` = "Seems to attract bad luck, with plans often going wrong for no apparent reason.",
-  `Overburdened` = "Carries too much equipment or personal items, slowing them down or limiting physical ability.",
+  #`Overburdened` = "Carries too much equipment or personal items, slowing them down or limiting physical ability.",
   `Stubborn` = "Refuses to change their mind or admit they’re wrong, even when it’s obvious.",
   `Shaky Hands` = "Has trouble with fine motor skills, making delicate tasks like aiming or lockpicking difficult."
 )
@@ -252,9 +264,9 @@ select_for_arch <- function(archetype
   # common skills and motivations if no archetype-specific ones found
   # if there
   selected_skill <- arch$skills %>% {
-      if(length(.)>0) . else {
-        if(is.na(default_skill)) common_skills else default_skill
-      }} %>% sample(1)
+    if(length(.)>0) . else {
+      if(is.na(default_skill)) common_skills else default_skill
+    }} %>% sample(1)
   selected_motivation <- arch$motivations %>% {
     if(length(.)>0) . else {
       if(is.na(default_motivation)) common_motivations else default_motivation
@@ -273,7 +285,11 @@ select_for_arch <- function(archetype
 
 # Function to generate a random name
 name_engine <- PersonProvider$new();
-generate_random_name <- function() paste(name_engine$first_name(),name_engine$last_name())
+generate_random_name <- function(gender=c('either','male','female')){
+  switch(match.arg(gender)
+         ,male=paste(name_engine$first_name_male(),name_engine$last_name_male())
+         ,female=paste(name_engine$first_name_female(),name_engine$last_name_female())
+         ,paste(name_engine$first_name(),name_engine$last_name()))}
 
 # Function to generate a unique ID for each character
 generate_unique_id <- function() {

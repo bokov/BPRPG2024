@@ -1,4 +1,4 @@
-.well,.active>a, .selectize-input, .tab-pane {
+.well,.active>a, .selectize-input, .tab-pane, .minibutton {
     background-color: rgb(255, 253, 248) !important;
     text-align: justify;
 }
@@ -35,3 +35,5 @@ h2>div {
 .form-group{margin-bottom:0; margin-top: 1em}
 
 .selectedinfo {margin-bottom:1.5em; margin-top:-0.75em}
+
+.minibutton {padding: 0.2em 0.5em; margin: 0.2em}

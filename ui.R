@@ -62,6 +62,11 @@ shinyUI(fluidPage(
 
       # Pre-filled textbox for name (modifiable) ----
       textInput("character_name", "Your character's name:", value = generate_random_name()),
+      p("Generate random name:",
+        actionButton('rnboy','boy',class='minibutton'),
+        actionButton('rngirl','girl',class='minibutton'),
+        actionButton('rn','either/neither',class='minibutton')
+        ),
 
       textAreaInput('character_bio',"Anything else you want to say about your character?",
                     placeholder = 'This is optional and only affects role-play, not game mechanics'),

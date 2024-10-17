@@ -117,6 +117,10 @@ shinyServer(function(input, output, session) {
     )
   })
 
+  observeEvent(input$rnboy,updateTextInput(inputId='character_name',value=generate_random_name('m')));
+  observeEvent(input$rngirl,updateTextInput(inputId='character_name',value=generate_random_name('f')));
+  observeEvent(input$rn,updateTextInput(inputId='character_name',value=generate_random_name()));
+
 
   # debug ----
   observeEvent(input$debug, browser());

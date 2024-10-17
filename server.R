@@ -76,7 +76,7 @@ shinyServer(function(input, output, session) {
                 ,archetype=if(archetype=='Other') custom_archetype else archetype
                 ,char_class=if(is_crew) toupper(archetype) else "PASSENGER"
                 ,motivation=if(charactermotive=='Other') custom_motivation else charactermotive
-                ,skill1,skill2,debuff,character_bio
+                ,skill1,skill2,debuff,character_bio=paste(character_bio,if(file.exists('debug')) '[test]' else '')
                 ,deck=if(is_crew) 1 else sample(c(3:5,8:13),1)
                 ,cabin_number = sample(1:200,1)
                 ,port_or_starbd = if(cabin_number %% 2) 'Port' else 'Starboard'

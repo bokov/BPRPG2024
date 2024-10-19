@@ -77,12 +77,12 @@ shinyServer(function(input, output, session) {
                 ,char_class=if(is_crew) toupper(archetype) else "PASSENGER"
                 ,motivation=if(charactermotive=='Other') custom_motivation else charactermotive
                 ,skill1,skill2,debuff,character_bio=paste(character_bio,if(file.exists('debug')) '[test]' else '')
-                ,deck=if(is_crew) 1 else sample(c(3:5,8:13),1)
-                ,cabin_number = sample(1:200,1)
+                ,deck=if(is_crew) 3 else sample(c(4,5,8,9,12,14:17),1)
+                ,cabin_number = sample(cabins[[paste0('D',deck)]],1)
                 ,port_or_starbd = if(cabin_number %% 2) 'Port' else 'Starboard'
-                ,front_or_back = if(cabin_number > 100) 'Aft' else 'Fore'
-                ,cabin=sprintf("%d-%d (%s, %s)",deck,cabin_number,port_or_starbd,front_or_back)
-                ,muster_station = LETTERS[deck]
+                ,front_or_back = if(cabin_number > 350) 'Aft' else 'Fore'
+                ,cabin=sprintf("%d (%s, %s)",cabin_number,port_or_starbd,front_or_back)
+                ,muster_station = paste0(LETTERS[deck],if(cabin_number %%2) 1 else 2,floor((cabin_number - deck*1000)/100))
                 ));
     sheet_append(gsid,last_submitted_char(),sheet=gssheet);
     # Notify the user that their character was submitted

@@ -246,6 +246,7 @@ debuffs <- debuffs <- c(
   `Shaky Hands` = "Has trouble with fine motor skills, making delicate tasks like aiming or lockpicking difficult."
 )
 
+source('cabins.R');
 
 
 # functions ----

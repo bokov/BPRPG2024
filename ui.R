@@ -65,7 +65,7 @@ shinyUI(fluidPage(
       p("Generate random name:",
         actionButton('rnboy','boy',class='minibutton'),
         actionButton('rngirl','girl',class='minibutton'),
-        actionButton('rn','either/neither',class='minibutton')
+        actionButton('rn','either',class='minibutton')
         ),
 
       textAreaInput('character_bio',"Anything else you want to say about your character?",

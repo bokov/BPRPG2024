@@ -233,6 +233,25 @@ shinyUI(fluidPage(
         # FAQ ----
         tabPanel("FAQ",with(tags,
                             dl(
+                              dt("Is the party actually going to be on a real boat?"),
+                              dd("'Yes', depending on what you mean by 'real' and
+                                 by 'boat'.", i("You"), "will party in a
+                                 comfortable and creatively appointed
+                                land-ship made of drywall and concrete
+                                 with a sturdy asphalt hull. Name: Knight Watch
+                                 Games. Flag: United States. Port of registry:
+                                 San Antonio, Texas. Displacement: ~100,000
+                                 tonnes not counting the cars parked on its 'deck'.
+                                 Top speed: 0.00000000154 knots.",i("Your
+                                 character"),", on the other hand, will be sailing
+                                 the Atlantic Ocean aboard The Silver Tide, and
+                                 that will indeed be real boat-- to your character."),
+                              dt("Okay, so what are the deets on The Silver Tide?
+                                 Displacement and all that junk?"),
+                              dd("Name: The Silver Tide. Flag: Bahamas.
+                                 Port of Registry: Nassau, Bahamas.
+                                 Displacement: 180,000 tonnes,
+                                 Top speed: 17 knots"),
                               dt("What does skill <X> do?"),
                               dd("All the skills give you two dice to roll for
                                  doing some specific type of task, as opposed to
@@ -259,6 +278,19 @@ shinyUI(fluidPage(
                                  choosing to be a crew-member you're trading off
                                  customizability for special pre-determined
                                  abilities."),
+                              dt("Let's say I pick a martial artist as a character
+                                 but choose some skill other than martial arts.
+                                 Can my character still do martial arts?"),
+                              dd("For roleplay purposes, you can say that your
+                                 character is doing martial arts when they fight.
+                                 But they will still only roll one die, same as
+                                 any other passenger who didn't choose the martial
+                                 arts skill. But don't worry-- the more martial
+                                 arts stuff you attempt to do, the more you'll
+                                 fail and the more sixes you'll roll-- both of
+                                 which will grow your martial arts skill-tree.
+                                 So by acting like a martial artist your character
+                                 will eventually become one."),
                               dt("How will I get my character when I go to the party?"),
                               dd("The GM will call out characters by name and
                                  cabin-number. If it matches one of the

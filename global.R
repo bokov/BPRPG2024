@@ -300,6 +300,23 @@ generate_unique_id <- function() {
 random_select <- function(xx,exclude=c('Other','Surprise me!'),choose=1){
   sample(setdiff(xx,exclude),choose)};
 
+dieroller <- function(white=1,black=0,red=0,opposing=0,mod=0,reps=1,target=0,plot=F,...,gg){
+  if(missing(gg)) gg <- list(geom_density()
+                             ,geom_vline(xintercept = target,lty=2,col='red')
+                             ,xlab(''),ylab('')
+                             ,annotate('text',x=-Inf,y=Inf,hjust=-0.2,vjust=1
+                                       ,label=sprintf('White:%d Black:%d Red:%d Opposing:%d Mod:%d Reps:%d Target:%d'
+                                                      ,white,black,red
+                                                      ,opposing,mod,reps,target)));
+  out<-replicate(reps,sum(sample(1:6,white,rep=T)) -
+    sum(sample(1:6,black,rep=T)) -
+    sum(sample(1:6,red,rep=T)) -
+    sum(sample(1:6,opposing,rep=T)) +
+    mod);
+  if(plot){
+    ggplot(data.frame(out),aes(x=out))+c(gg,list(...))
+  } else out;
+}
 source('local.config.R');
 try(gs4_auth(token=token));
 

@@ -44,4 +44,5 @@ dd {padding-top: 0.5em}
 
 /* Fixing annoying format of horizontal scroll label */
 div.col-sm-12 > div.form-group.shiny-input-container > div {
-  margin: 0 !important; margin-bottom: 1em}
+  margin: 0 !important}
+#image_scale {margin-bottom: 1em}

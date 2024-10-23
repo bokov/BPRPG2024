@@ -1,6 +1,7 @@
 # ui.R
 
 library(shiny)
+library(shinyWidgets)
 
 shinyUI(fluidPage(
   tags$head(
@@ -320,14 +321,29 @@ shinyUI(fluidPage(
                               dt("What if I think I found a bug or typo?"),
                               dd("Please post it here:",a("https://bokov.shinyapps.io/BPRPG2024/",href="https://github.com/bokov/BPRPG2024/issues"))
 
-                            )))
-      #   tabPanel("Your CruisePass",
-      #            p('Please save or print out your CruisePass card. Or at least
-      #              remember your cabin number. Your CruisPass card reflects the
-      #              information you entered before the latest time you pressed
-      #              "Create my CruisePass Card"'),
-      # )
-    )
+                            ))),
+        tabPanel(
+          "Deck Viewer",
+          sidebarLayout(
+            sidebarPanel(
+              noUiSliderInput(
+                inputId = "deck_slider",
+                label = "Deck: ",
+                min = 3,max = 19,direction='rtl',
+                value = 9,step = 1,
+                orientation = 'vertical',
+                width='5vw',height='50vh'
+              ),width=2),
+            mainPanel(
+              fluidRow(
+                column(
+                  width = 12,
+                  noUiSliderInput(
+                    inputId = "image_scale",label = "Image Size:",
+                    min = 50,max = 200,value = 100,step = 10,width = "100%"),
+                  uiOutput('deckplan')
+                )))))
+      )
   )
 )))
 

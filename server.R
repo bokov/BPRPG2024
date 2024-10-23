@@ -122,6 +122,22 @@ shinyServer(function(input, output, session) {
   observeEvent(input$rn,updateTextInput(inputId='character_name',value=generate_random_name()));
 
 
+  output$deckplan <- renderUI({
+    # Ensure the deck number has two digits (e.g., 03, 04)
+    img_path <- sprintf("deck%d.png", input$deck_slider)
+
+    # Calculate the scaling percentage
+    scale_percent <- input$image_scale / 100;
+
+    # Use img() tag to display the image
+    div(img(src = img_path,style = paste0(
+        #"width:", 600 * scale_percent, "px; ",
+        "height:", 800 * scale_percent, "px; ",
+        "object-fit: contain;"
+      )
+    ),class='deckplan')
+  })
+
   # debug ----
   observeEvent(input$debug, browser());
 

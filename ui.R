@@ -109,7 +109,8 @@ shinyUI(fluidPage(
                  h3("16350 Blanco Rd #116, San Antonio, TX 78232"),
                  h3("The Deathstar Room"),
                  h3("Saturday, November 2nd, 2024"),
-                 p("Boarding begins promptly at noon, lasting until 3pm with
+                 h4("Note the updated start-time: 12:30pm, not noon, so we have time to set up."),
+                 p("Boarding begins promptly at",tags$b("12:30 pm"),"lasting until 3pm with
                    late pick-up available up to 6pm. Parents are welcome to
                    stay and play boardgames next to the party room."),
                  p("Don’t miss this special journey... of a lifetime.
@@ -327,19 +328,17 @@ shinyUI(fluidPage(
           sidebarLayout(
             sidebarPanel(
               noUiSliderInput(
-                inputId = "deck_slider",
-                label = "Deck: ",
-                min = 3,max = 19,direction='rtl',
-                value = 9,step = 1,
-                orientation = 'vertical',
-                width='5vw',height='50vh'
+                inputId = "deck_slider",label = "Deck: ",
+                min = 1,max = 19,direction='rtl',value = 9,step = 1,
+                orientation = 'vertical',width='5vw',height='50vh',
+                update_on = 'change'
               ),width=2),
             mainPanel(
               fluidRow(
                 column(
                   width = 12,
                   noUiSliderInput(
-                    inputId = "image_scale",label = "Image Size:",
+                    inputId = "image_scale",label = "Image Size:",update_on = 'change',
                     min = 50,max = 200,value = 100,step = 10,width = "100%"),
                   uiOutput('deckplan')
                 )))))
